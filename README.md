@@ -25,7 +25,7 @@ The footprint tightens when the arm is tucked and expands when the arm is extend
 - ROS 2 Humble
 - Nav2
 - [neo_simulation2](https://github.com/neobotix/neo_simulation2)
-- [cs4home_core](https://github.com/Intelligent-Robot-Lab/cs4home_core)
+- [cs4home_core](https://github.com/CoreSenseEU/cs4home_architecture)
 
 ---
 
