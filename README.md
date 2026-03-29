@@ -117,3 +117,11 @@ If you use this software, please cite:
 ## License
 
 Apache 2.0 — see [LICENSE](LICENSE) for details.
+
+## Acknowledgements
+
+This work was developed as part of the [CORESENSE](https://github.com/CoreSenseEU) project — a cognitive architecture for autonomous robots under the European Union's Horizon Europe research and innovation programme. This project has received funding from the European Union's Horizon Europe research and innovation programme under grant agreement No. #101070254 
+
+The module follows the cognitive architecture pattern defined in [cs4home_core](https://github.com/Intelligent-Robot-Lab/cs4home_core), developed by the Intelligent Robot Lab.
+
+This work was carried out at [Irish Manufacturing Research (IMR)](https://www.imr.ie), Mullingar, Ireland, as part of the CORESENSE Manufacturing Testbed (MT).
