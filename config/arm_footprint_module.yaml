@@ -1,0 +1,42 @@
+# CORESENSE RAMP — ArmFootprint Cognitive Module Configuration
+# Place alongside your existing navigation_cognition config
+
+arm_footprint_cognitive_module:
+  ros__parameters:
+
+    # -------------------------------------------------------------------
+    # Afferent — subscribes to joint_states
+    # -------------------------------------------------------------------
+    afferent:
+      type: MTArmFootprintInput
+      topics:
+        - /joint_states
+
+    # -------------------------------------------------------------------
+    # Core — TF projection + convex hull computation
+    # -------------------------------------------------------------------
+    core:
+      type: MTArmFootprintCognitiveCore
+
+      # MPO-700 base rectangle half-dimensions (meters)
+      # Must match navigation.yaml footprint
+      base_half_x: 0.45
+      base_half_y: 0.40
+
+      # Outward safety padding on final convex hull (meters)
+      safety_padding: 0.05
+
+      # Update rate in milliseconds (100ms = 10Hz)
+      update_period_ms: 100
+
+      # TF reference frame for all projections
+      base_frame: "base_link"
+
+    # -------------------------------------------------------------------
+    # Efferent — publishes footprint polygon to Nav2 costmap topics
+    # -------------------------------------------------------------------
+    efferent:
+      type: MTArmFootprintOutput
+      topics:
+        - /local_costmap/footprint    # index 0
+        - /global_costmap/footprint   # index 1

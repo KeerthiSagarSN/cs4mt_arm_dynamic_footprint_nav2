@@ -1,0 +1,106 @@
+# CORESENSE RAMP — cs4mt_armfootprint_aware_navigation
+# All parameters here — no hardcoded values in the Core
+
+navigation_cognition_master:
+  ros__parameters:
+    flows: [arm_footprint_flow]
+    arm_footprint_flow: [arm_footprint_cognitive_module]
+
+arm_footprint_cognitive_module:
+  ros__parameters:
+    core: arm_footprint_cognitive_core
+    afferent: arm_footprint_input
+    efferent: arm_footprint_output
+    meta: ""
+    coupling: ""
+
+    # ------------------------------------------------------------------
+    # MPO-700 base rectangle half-dimensions (meters)
+    # Must match navigation.yaml footprint
+    # ------------------------------------------------------------------
+    #base_half_x: 0.45
+    #base_half_y: 0.40
+    base_half_x: 0.35
+    base_half_y: 0.30
+
+    # ------------------------------------------------------------------
+    # Outward safety padding on final convex hull (meters)
+    # Tune this live: ros2 param set /arm_footprint_cognitive_module safety_padding 0.08
+    # ------------------------------------------------------------------
+    safety_padding: 0.08
+
+    # ------------------------------------------------------------------
+    # Timer update rate (ms) — footprint publish rate
+    # ------------------------------------------------------------------
+    update_period_ms: 50       # 20Hz
+
+    # ------------------------------------------------------------------
+    # TF reference frame for all arm link projections
+    # ------------------------------------------------------------------
+    base_frame: "base_link"
+
+    # ------------------------------------------------------------------
+    # Intermediate sample points along each link segment
+    # Higher = better coverage of long links but more compute
+    # ------------------------------------------------------------------
+    segment_samples: 8
+
+    # ------------------------------------------------------------------
+    # set_parameters service throttle (not used currently but kept)
+    # ------------------------------------------------------------------
+    service_update_every_n_ticks: 10
+
+    # ------------------------------------------------------------------
+    # UR10 arm link TF frames to project (base → tip)
+    # Edit here to add/remove links — no rebuild needed
+    # ------------------------------------------------------------------
+    arm_links:
+      - "ur10base_link"
+      - "ur10shoulder_link"
+      - "ur10upper_arm_link"
+      - "ur10forearm_link"
+      - "ur10wrist_1_link"
+      - "ur10wrist_2_link"
+      - "ur10wrist_3_link"
+      - "ur10tool0"
+      - "neo_gripper_mount_link"
+      - "robotiq_140_base_link"
+      - "left_outer_knuckle"
+      - "right_outer_knuckle"
+
+    # ------------------------------------------------------------------
+    # Cylinder radius per link (meters) — must match arm_links order
+    # These approximate the link's cross-section for ground projection
+    # Tune to match actual UR10 geometry:
+    #   shoulder joint:  ~85mm radius
+    #   upper arm:       ~75mm radius
+    #   forearm:         ~65mm radius
+    #   wrist joints:    ~60mm radius
+    # ------------------------------------------------------------------
+    link_radii:
+      - 0.10   # ur10base_link
+      - 0.10   # ur10shoulder_link
+      - 0.09   # ur10upper_arm_link
+      - 0.08   # ur10forearm_link
+      - 0.07   # ur10wrist_1_link
+      - 0.07   # ur10wrist_2_link
+      - 0.07   # ur10wrist_3_link
+      - 0.05   # ur10tool0
+      - 0.08   # neo_gripper_mount_link
+      - 0.09   # robotiq_140_base_link
+      - 0.06   # left_outer_knuckle
+      - 0.06   # right_outer_knuckle
+
+    # ------------------------------------------------------------------
+    # Afferent — /joint_states
+    # ------------------------------------------------------------------
+    arm_footprint_input:
+      topics: ["/joint_states"]
+      types: ["sensor_msgs/msg/JointState"]
+
+    # ------------------------------------------------------------------
+    # Efferent — Nav2 costmap footprint topics
+    # ------------------------------------------------------------------
+    arm_footprint_output:
+      topics: ["/local_costmap/footprint", "/global_costmap/footprint"]
+      types: ["geometry_msgs/msg/Polygon", "geometry_msgs/msg/Polygon"]

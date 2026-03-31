@@ -1,0 +1,23 @@
+# CORESENSE RAMP — Master cognitive flow configuration
+# Integrates arm footprint module alongside existing navigation goal cognition
+
+mt_navigation_cognitive_master:
+  ros__parameters:
+    package_name: "cs4mt_navigation_cognition"
+
+    # -------------------------------------------------------------------
+    # Cognitive flows
+    # -------------------------------------------------------------------
+    flows:
+
+      # Existing: goal criticality → inflation radius adjustment
+      navigation_goal_flow:
+        - nav_goal_cognitive_input
+        - nav_goal_cognitive_core
+        - nav_goal_cognitive_output
+
+      # New RAMP: arm joint states → TF projection → footprint update
+      arm_footprint_flow:
+        - arm_footprint_input
+        - arm_footprint_cognitive_core
+        - arm_footprint_output
