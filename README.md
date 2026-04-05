@@ -58,7 +58,7 @@ ros2 launch neo_simulation2 navigationwithrviz.launch.py
 
 **3. Launch the dynamic arm footprint module**
 ```bash
-ros2 launch cs4mt_armfootprint_aware_navigation cs4mt_armfootprint_aware_navigation.launch.py
+ros2 launch cs4mt_arm_dynamic_footprint_nav2 cs4mt_arm_dynamic_footprint_nav2.launch.py
 ```
 
 **4. Configure and activate the lifecycle node**
