@@ -1,6 +1,6 @@
 # cs4mt_arm_dynamic_footprint_nav2
 
-**Real-time arm-aware footprint projection for Nav2** — computes the 2D convex hull of a mounted manipulator arm from live joint states and publishes it to the Nav2 costmap at runtime, enabling collision-safe mobile manipulator navigation without modifying the navigation stack.
+**Real-time arm-aware footprint projection for Nav2** - computes the 2D convex hull of a mounted manipulator arm from live joint states and publishes it to the Nav2 costmap at runtime, enabling collision-safe mobile manipulator navigation without modifying the navigation stack.
 
 Validated on the **Neobotix MPO-700 + UR10** platform under **ROS 2 Humble**.
 
@@ -8,7 +8,7 @@ Validated on the **Neobotix MPO-700 + UR10** platform under **ROS 2 Humble**.
 
 ## Overview
 
-Standard Nav2 treats the robot footprint as a static parameter — typically the base platform outline. This is unsafe for mobile manipulators: when the arm extends beyond the base, the navigation stack has no awareness of the additional collision volume.
+Standard Nav2 treats the robot footprint as a static parameter - typically the base platform outline. This is unsafe for mobile manipulators: when the arm extends beyond the base, the navigation stack has no awareness of the additional collision volume.
 
 `cs4mt_arm_dynamic_footprint_nav2` solves this by:
 - Querying TF for each arm link pose in the base frame at runtime
