@@ -99,7 +99,11 @@ Efferent  →  /local_costmap/footprint + /global_costmap/footprint publisher
 ```
 
 ---
+## Demonstrator Videos
 
+![Demo - Extended UR10 arm on MPO_700 Neobotix Omnidirectional Mobile Robot](images/extended_arm_projection_to_footprint.gif)
+
+---
 ## Citation
 
 If you use this software, please cite:
