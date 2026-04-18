@@ -100,8 +100,11 @@ Efferent  →  /local_costmap/footprint + /global_costmap/footprint publisher
 
 ---
 ## Demonstrator Videos
-
+### Nav2 Trajectory with arm projected footprint
 ![Demo - Extended UR10 arm on MPO_700 Neobotix Omnidirectional Mobile Robot](images/extended_arm_projection_to_footprint.gif)
+
+### Comparison - With Fooprint module and Without footprint module
+![Demo - module_comparison](images/module_comparison.gif)
 
 ---
 ## Citation
